@@ -1,0 +1,166 @@
+body {
+  text-align: center;
+  background-color: #283149;
+  user-select: none;
+}
+
+h1 {
+  font-size: 5rem;
+  color: #DBEDF3;
+  font-family: "Arvo", cursive;
+  text-shadow: 3px 0 #DA0463;
+
+}
+
+footer {
+  color: #DBEDF3;
+  font-family: sans-serif;
+}
+
+.set {
+  margin: 20px auto;
+  margin-top: 8px;
+  display: grid;
+  gap:2px;
+  border: 4px solid rgb(94, 116, 149);
+  border-radius: 8px;
+}
+
+.game-over {
+  background-color: red;
+  opacity: 0.8;
+}
+
+.btnbox {background-image: linear-gradient(to right, #1A2980 0%, #26D0CE  51%, #1A2980  100%);}
+.btnbox {
+  margin: 0px;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  padding: 0px;
+  outline: none;
+  font-size: 10px;
+  width: 20px;
+   height: 20px;
+   text-align: center;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+ }
+ .btnclass{
+    background-image: linear-gradient(to right, #1A2980 0%, #26D0CE  51%, #1A2980  100%);
+    border: 2px; 
+    border-radius: 10px;
+    background-size: 200% auto;
+    transition: 0.5s;
+    height: 30px;
+    width: 100px;
+    color: white;
+ }
+ .btnclass:hover {
+   background-position: left right;
+   color: #fff;
+   border:1px solid white;
+   text-decoration: none;
+ }
+ .btnbox:hover {
+   background-position: right center;
+   color: #fff;
+   border:1px solid white;
+   text-decoration: none;
+ }
+ a{
+  text-decoration: none;
+ }
+ a:hover {
+ text-decoration: none;
+ }
+ .menuitems{
+  cursor:pointer;
+  position: relative;
+  text-align: center;
+}
+.menuitems:hover{
+  color: rgba(15, 14, 14, 0.892);
+}
+.menuitems-content{
+  display: flex;
+  cursor:pointer;
+  color: white;
+  z-index: 1;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  flex-direction: column;
+  width: 160px;
+  position: absolute;
+  border: 1px solid rgba(172, 171, 171, 0.518);
+}
+.flexstyle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:5px;
+}
+.contentlist{
+  padding:8px 8px 8px 8px; 
+}
+.contentlist:hover{
+  background-color: rgba(235, 235, 235, 0.888);
+  color: rgba(15, 14, 14, 0.892);
+}
+.hide{
+  display: none;
+}
+.hide1{
+  display: none;
+}
+.background-dark{
+  background-color: rgb(23, 23, 23);
+}
+.background{
+  background-color: rgb(78, 75, 75);
+}
+.closebtn{
+  margin:0;
+  padding-right: 10px;
+  cursor: pointer;
+}
+.dialogtitle{
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between; 
+  align-items: center;
+  height: 17px;
+}
+.dialogboxbg{
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.dialogbox{
+  position:absolute;
+  background-color: rgb(68, 66, 66);
+  color: rgb(217, 216, 216);
+  font-size: 12px;
+  border: 1px solid  rgba(172, 171, 171, 0.518);
+}
+.controls{
+  background-color: rgb(34, 34, 34);
+  color: rgb(217, 216, 216);
+  border: 1px solid  rgba(172, 171, 171, 0.518);
+  transition-duration: 0.4s;
+}
+.controls:hover{
+  border: 1px solid rgb(52, 52, 249);
+}
+input{
+  outline: none;
+  font-size: 14px;
+}
+input:focus{
+  border: 1px solid rgb(52, 52, 249);
+}
+.margintb{
+  margin-top:8px;margin-bottom:5px
+}
