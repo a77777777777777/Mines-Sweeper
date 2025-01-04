@@ -30,28 +30,26 @@ footer {
   background-color: red;
   opacity: 0.8;
 }
-
-.btnbox {background-image: linear-gradient(to right, #1A2980 0%, #26D0CE  51%, #1A2980  100%);}
 .btnbox {
   margin: 0px;
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
   padding: 0px;
   outline: none;
   font-size: 10px;
   width: 20px;
    height: 20px;
    text-align: center;
-   transition: 0.5s;
+   transition: 0.3s;
    background-size: 200% auto;
    color: white;            
  }
  .btnclass{
-    background-image: linear-gradient(to right, #1A2980 0%, #26D0CE  51%, #1A2980  100%);
+    background-image: linear-gradient(to right, #4260f8 0%, #160357  61%, #0320b0  95%);
     border: 2px; 
     border-radius: 10px;
     background-size: 200% auto;
-    transition: 0.5s;
+    transition: 0.3s;
     height: 30px;
     width: 100px;
     color: white;
@@ -59,7 +57,7 @@ footer {
  .btnclass:hover {
    background-position: left right;
    color: #fff;
-   border:1px solid white;
+   border:1px solid rgb(0, 0, 0);
    text-decoration: none;
  }
  .btnbox:hover {
@@ -104,8 +102,8 @@ footer {
   padding:8px 8px 8px 8px; 
 }
 .contentlist:hover{
-  background-color: rgba(235, 235, 235, 0.888);
-  color: rgba(15, 14, 14, 0.892);
+  background-color: rgba(125, 129, 247, 0.888);
+  color: rgba(38, 0, 255, 0.892);
 }
 .hide{
   display: none;
@@ -114,10 +112,10 @@ footer {
   display: none;
 }
 .background-dark{
-  background-color: rgb(23, 23, 23);
+  background-color: rgb(13, 1, 77);
 }
 .background{
-  background-color: rgb(78, 75, 75);
+  background-color: rgb(17, 3, 96);
 }
 .closebtn{
   margin:0;
@@ -140,16 +138,16 @@ footer {
 }
 .dialogbox{
   position:absolute;
-  background-color: rgb(68, 66, 66);
-  color: rgb(217, 216, 216);
+  background-color: rgb(15, 40, 100);
+  color: rgb(186, 196, 252);
   font-size: 12px;
   border: 1px solid  rgba(172, 171, 171, 0.518);
 }
 .controls{
-  background-color: rgb(34, 34, 34);
-  color: rgb(217, 216, 216);
+  background-color: rgb(15, 40, 100);
+  color: rgb(186, 196, 252);
   border: 1px solid  rgba(172, 171, 171, 0.518);
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
 }
 .controls:hover{
   border: 1px solid rgb(52, 52, 249);
@@ -164,3 +162,36 @@ input:focus{
 .margintb{
   margin-top:8px;margin-bottom:5px
 }
+
+.theme1{
+  cursor: pointer;
+  height: 20px;
+  width:20px;
+  border:3.2px solid rgb(201, 198, 198);
+  background-image: linear-gradient(to right, #0a3dd7 0%, #3f90fa  95%);
+}
+.theme2{
+  cursor: pointer;
+  height: 20px;
+  width:20px;
+  border:3.2px solid rgb(201, 198, 198);
+  background-image: linear-gradient(to left, #ee1212 0%, #fa3f3f  95%);
+}
+.theme3{
+  cursor: pointer;
+  height: 20px;
+  width:20px;
+  border:3.2px solid rgb(201, 198, 198);
+  background-image: linear-gradient(to right, #0ccc22 0%, #0ad021  95%);
+}
+.blue{
+  background-image: linear-gradient(to right, #4d76f1 0%, #0b0264  61%, #3f90fa  95%);
+}
+.red{
+  background-image: linear-gradient(to right, #f14d4d 0%, #640216  61%, #fa3f3f  95%);
+}
+.green{
+  background-image: linear-gradient(to right, #4df160 0%, #216402  61%, #3ffa55  95%);
+}
+
+.btnbox1 {background-image: linear-gradient(to right, #4d76f1 0%, #0b0264  61%, #3f90fa  95%);}

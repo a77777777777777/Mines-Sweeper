@@ -10,7 +10,7 @@
 
   <div id="w1" class="dialogboxbg background" style="display: none;cursor: wait;">&nbsp;</div>
   <div id="new" class="dialogboxbg hide background">
-    <div id="newdialog" class="dialogbox" style="width:25vw; height:20%;top:35%;left:35%;">
+    <div id="newdialog" class="dialogbox" style="width:20vw; height:20%;top:35%;left:35%;">
       <div class="dialogtitle background-dark"><div>&nbsp;Settings</div><div class="closebtn"><a onclick="hidedialog()">X</a></div></div>
       <div style="display: grid; grid-template-columns: 100%;">
           <div>
@@ -19,7 +19,7 @@
               <div><p class="margintb">Column:</p><input id="newwidth" onchange="validatenumber('newwidth')" class="controls" type="number" value="25" style="width: 4vw;"></div>
               <div><p class="margintb">&nbsp;</p><button class="controls marginlr" onclick="swapheightwidth()">⇆</button></div>
               <div><p class="margintb">Row:</p><input id="newheight" onchange="validatenumber('newheight')" class="controls" type="number" value="25" style="width: 4vw;"></div>
-              <div><p class="margintb">Mines:</p><input id="newmines" onchange="validatenumber('newmines')" class="controls" type="number" value="70" style="width: 4vw;"></div>
+              <div><p class="margintb">Mines:</p><input id="newmines" onchange="validatenumber('newmines')" class="controls" type="number" value="100" style="width: 4vw;"></div>
 
             </div>
               <div class="flexstyle">
@@ -34,12 +34,12 @@
 
 <div style="display: flex;gap: 10px;align-items: center; justify-content: center; margin-top: 20px;">
 
-  <div class="menuitems" onclick="menushow()"><a href="#">Settings ⚙️</a>
-    <div id="file">
-      <div class="menuitems-content background-dark">
-      <a class="contentlist" onclick="b()">Beginner</a>
-      <a class="contentlist" onclick="i()">Intermediate</a>
-      <a class="contentlist" onclick="h()">Hard</a>
+  <div class="menuitems" onclick="menushow()"><a class="menulink" href="#">Settings ⚙️</a>
+    <div id="settings" style="position: relative;">
+      <div id="settings1" class="menuitems-content background-dark">
+      <a class="contentlist" onclick="begin()">Beginner</a>
+      <a class="contentlist" onclick="inter()">Intermediate</a>
+      <a class="contentlist" onclick="hard()">Hard</a>
       <a class="contentlist" onclick="showdialog('new')">Custom...</a>
       </div>
     </div>
@@ -47,7 +47,9 @@
 
   <div><button class="btnclass" onclick="reset()">Reset</button></div>
   <div id="time" style="padding-left:8px;padding-right:8px;border:3.2px solid rgb(218, 216, 216); background-color: rgb(2, 2, 86);color:rgb(57, 164, 251)">00:00</div>
-
+  <div class="theme1" onclick="changecolor('blue')"></div>
+  <div class="theme2" onclick="changecolor('red')"></div>
+  <div class="theme3" onclick="changecolor('green')"></div>
 </div>
 
     <div id="gamegrid" class="set"></div>
