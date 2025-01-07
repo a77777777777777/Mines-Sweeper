@@ -37,10 +37,10 @@ window.addEventListener("resize",()=>{
 
 function resetgridboxsize(){
     if(window.innerHeight>window.innerWidth){ //window.innerHeight>window.innerWidth screen.height>screen.width
-        size=document.querySelector("body").offsetWidth;
+        size=window.innerWidth;
         size=Math.floor(size*92/100);
     }else{
-        size=document.querySelector("body").offsetHeight;
+        size=window.innerHeight;
         size=Math.floor(size*70/100);
     }
 }
