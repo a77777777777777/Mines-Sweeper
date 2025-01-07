@@ -5,12 +5,24 @@ var height,width;
 var mines=13;
 var minutes=0;
 var seconds=0;
+var size;
 var timerid=0;
 var menuvisible=0;
 var currenttheme="blue";
 height=10;
 width=10;
 var isStarted=false;
+
+
+if(document.height>document.width){
+    size=document.querySelector("body").offsetWidth;
+    size=Math.floor(size*70/100);
+
+}else{
+    size=document.querySelector("body").offsetHeight;
+    size=Math.floor(size*70/100);
+}
+
 createGrid(height,width);
 hidemenu();
 document.addEventListener("contextmenu",(e)=>{e.preventDefault();});
@@ -110,6 +122,12 @@ function swapheightwidth(){
     document.getElementById("newwidth").value=a;
 }
 function createGrid(h,w){
+    var boxsize;
+    document.getElementById("footer").innerText="";
+    if(h>w){
+        boxsize=Math.floor(size/h)-2;
+    }else boxsize=Math.floor(size/w)-2;
+    if(boxsize>40) boxsize=40;
     if(mines>(height*width))mines=Math.floor((height*width)/3);
     if(mines===0)mines=Math.floor((height*width)/3);
     if(timerid>0){clearInterval(timerid); timerid=0;}
@@ -131,7 +149,7 @@ function createGrid(h,w){
     column="";
     for(var b=0;b<w;b++){
         column=column+" 1fr";
-        document.querySelector("div.set").innerHTML=document.querySelector("div.set").innerHTML+"<button class='btnbox "+currenttheme+"' id='"+a+","+b+"'></button>";
+        document.querySelector("div.set").innerHTML+="<button class='btnbox "+currenttheme+"' id='"+a+","+b+"' style='height:"+boxsize+"px;width:"+boxsize+"px;font-size:"+boxsize/2+"px;'></button>";
         //document.getElementById(a+""+b).addEventListener("click",open);
     }
  }
@@ -147,10 +165,9 @@ function createGrid(h,w){
         });
     }
  }
- document.title=height+":"+width+":"+mines;
  document.getElementById("gamegrid").style.setProperty("grid-template-columns",column);
  document.getElementById("gamegrid").style.setProperty("grid-template-rows",row);
- document.getElementById("gamegrid").style.setProperty("width",(w*22)+8+"px");
+ document.getElementById("gamegrid").style.setProperty("width",(w*(boxsize+1))-2+"px");
  timerid=setInterval(timer,1000);
  document.getElementById('w1').classList.add("hide");
 }
@@ -196,13 +213,6 @@ function openBox(h1,w1){
     if(minesgrid[h1][w1]===1){
         document.getElementById(h1+","+w1).innerText="💥";
         document.getElementById(h1+","+w1).classList.remove(currenttheme);
-        document.getElementById(h1+","+w1).style.setProperty("background-image","red");
-        document.getElementById(h1+","+w1).style.setProperty("color","white");
-        document.getElementById(h1+","+w1).style.setProperty("height","20px");
-        document.getElementById(h1+","+w1).style.setProperty("width","20px");
-        document.getElementById(h1+","+w1).style.setProperty("margin","0px");
-        document.getElementById(h1+","+w1).style.setProperty("padding","0px");
-        document.getElementById(h1+","+w1).style.setProperty("font-size","12px");
         var tmpaud=new Audio("sounds/wrong.mp3");
         tmpaud.play();
         for(var a=0;a<height;a++){
@@ -210,15 +220,13 @@ function openBox(h1,w1){
                 if(minesgrid[a][b]===1){
                     document.getElementById(a+","+b).innerText="💥";
                     //document.getElementById(a+","+b).classList.remove("btnbox");
-                    //document.getElementById(a+","+b).style.setProperty("background-color","red");
-                    document.getElementById(a+","+b).style.setProperty("color","white");
-                    document.getElementById(a+","+b).style.setProperty("height","20px");
-                    document.getElementById(a+","+b).style.setProperty("width","20px");
+                    //document.getElementById(a+","+b).style.setProperty("background-color","white");
                 }
                 document.getElementById(a+","+b).disabled=true;
             }
         }
         isStarted=false;
+        document.getElementById("footer").innerText="Game over!";
         clearInterval(timerid);
     }
     else{
@@ -389,6 +397,7 @@ function openBox(h1,w1){
             }
         }
         isStarted=false;
+        document.getElementById("footer").innerText="You win!";
         clearInterval(timerid);
     }
 }
@@ -396,13 +405,6 @@ function openBox(h1,w1){
 function setStyle(tmpid){
     document.getElementById(tmpid).classList.remove(currenttheme);
     document.getElementById(tmpid).style.setProperty("background-color","#283149");
-    document.getElementById(tmpid).style.setProperty("color","white");
-    document.getElementById(tmpid).style.setProperty("height","20px");
-    document.getElementById(tmpid).style.setProperty("align-text","center");
-    document.getElementById(tmpid).style.setProperty("width","20px");
-    document.getElementById(tmpid).style.setProperty("margin","0px");
-    document.getElementById(tmpid).style.setProperty("padding","0px");
-    document.getElementById(tmpid).style.setProperty("font-size","12px");
     document.getElementById(tmpid).innerText="";
     document.getElementById(tmpid).disabled=true;
 }
@@ -446,6 +448,7 @@ function reset(){
     if(!isStarted){
         createGrid(height,width);
     }
+    document.getElementById("reset").blur();
 }
 function changecolor(theme){
     if(!(currenttheme===theme)){
