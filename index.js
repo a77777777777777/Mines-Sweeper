@@ -13,17 +13,9 @@ height=10;
 width=10;
 var isStarted=false;
 
-
-if(document.height>document.width){
-    size=document.querySelector("body").offsetWidth;
-    size=Math.floor(size*70/100);
-
-}else{
-    size=document.querySelector("body").offsetHeight;
-    size=Math.floor(size*70/100);
-}
-
+resetgridboxsize();
 createGrid(height,width);
+
 hidemenu();
 document.addEventListener("contextmenu",(e)=>{e.preventDefault();});
 
@@ -38,7 +30,20 @@ window.onclick = function(event) {
         }
       }
     }
-  } 
+}
+window.addEventListener("resize",()=>{
+    resetgridboxsize();
+});
+
+function resetgridboxsize(){
+    if(window.innerHeight>window.innerWidth){ //window.innerHeight>window.innerWidth screen.height>screen.width
+        size=document.querySelector("body").offsetWidth;
+        size=Math.floor(size*70/100);
+    }else{
+        size=document.querySelector("body").offsetHeight;
+        size=Math.floor(size*70/100);
+    }
+}
 
 function timer(){
     seconds=seconds+1;
@@ -87,22 +92,11 @@ function hidedialog(){
     document.getElementById("new").classList.add("hide");
 }
 function hidemenu(){
-    //document.title="hidemenu"+menuvisible;
-    //console.log(document.getElementById('file'));
-    //document.getElementById("file").style.setProperty("position","absolute");
-    //document.getElementById("settings1").style.setProperty("display","none");
-    //document.getElementById("settings1").style.visibility="hidden";
-    //document.getElementById("settings1").style.display="none";
     document.getElementById("settings1").classList.toggle("hide");
-    //document.getElementById('file').classList.add("hide");
-    //document.getElementById("file").style.setProperty("left","20vw");
 }
 function menushow(){
     menuvisible=1;
     hidemenu();
-    //document.getElementById("settings1").style.visibility="visible";
-    //document.getElementById("settings1").style.display="flex";
-    //document.getElementById("settings1").style.removeProperty("display");
 }
 function creategame(){
     menuvisible=0;
@@ -167,13 +161,12 @@ function createGrid(h,w){
  }
  document.getElementById("gamegrid").style.setProperty("grid-template-columns",column);
  document.getElementById("gamegrid").style.setProperty("grid-template-rows",row);
- document.getElementById("gamegrid").style.setProperty("width",(w*(boxsize+1))-2+"px");
+ document.getElementById("gamegrid").style.setProperty("width",(w*(boxsize))+8+"px");
  timerid=setInterval(timer,1000);
  document.getElementById('w1').classList.add("hide");
 }
 
 function open(){
-
     var tmpid=this.id+"";
     if(!isStarted){
     for(var a=0;a<height;a++){
