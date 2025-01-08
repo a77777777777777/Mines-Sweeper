@@ -12,7 +12,7 @@ var currenttheme="blue";
 height=10;
 width=10;
 var isStarted=false;
-
+var touchcount=0;
 resetgridboxsize();
 createGrid(height,width);
 
@@ -158,14 +158,15 @@ function createGrid(h,w){
             }
             return;
         });
+        document.getElementById(a+","+b).addEventListener("touchstart",function(e){
+            if(isStarted) touchcount+=1;
+        });
         document.getElementById(a+","+b).addEventListener("touchend",function(e){
-            if(isStarted){ 
+            if(isStarted && touchcount>50){ 
+                touchcount=0;
                 if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
                 else document.getElementById(this.id).innerText="🚩";
-                
-                document.getElementById("footer").innerText="e.detail";
             }
-            return;
         });
     }
  }
