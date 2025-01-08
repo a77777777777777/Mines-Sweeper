@@ -166,7 +166,7 @@ function createGrid(h,w){
         });
         document.getElementById(a+","+b).addEventListener("touchend",function(e){
             if(isStarted){
-                setTimeout(setflag(this.id),400);
+                setTimeout(setflag(e.target.id),310);
             }
         });
     }
