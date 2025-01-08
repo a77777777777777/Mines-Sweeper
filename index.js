@@ -166,15 +166,8 @@ function createGrid(h,w){
         });
         document.getElementById(a+","+b).addEventListener("touchend",function(e){
             if(isStarted){
-                setTimeout(()=>{
-                    if(touchcount===1){
-                    touchcount=0;
-                    if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
-                    else document.getElementById(this.id).innerText="🚩";
-                }
-                },340);
+                setTimeout(setflag(this.id),400);
             }
-            return;
         });
     }
  }
@@ -184,7 +177,13 @@ function createGrid(h,w){
  timerid=setInterval(timer,1000);
  document.getElementById('w1').classList.add("hide");
 }
-
+function setflag(id){
+    if(touchcount===1){
+        touchcount=0;
+        if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
+        else document.getElementById(this.id).innerText="🚩";
+    }
+}
 function open(){
     touchcount=0;
     var tmpid=this.id+"";
