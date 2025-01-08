@@ -10,7 +10,7 @@
 
   <div id="w1" class="dialogboxbg background" style="display: none;cursor: wait;">&nbsp;</div>
   <div id="new" class="dialogboxbg hide background">
-    <div id="newdialog" class="dialogbox" style="width:20vw; height:160px;top:35%;left:35%;">
+    <div id="newdialog" class="dialogbox" style="width:20vw; height:160px;left:35%;">
       <div class="dialogtitle background-dark"><div>&nbsp;Settings</div><div class="closebtn"><a onclick="hidedialog()">X</a></div></div>
       <div style="display: grid; grid-template-columns: 100%;">
           <div>
@@ -20,7 +20,6 @@
               <div><p class="margintb">&nbsp;</p><button class="controls marginlr" onclick="swapheightwidth()">⇆</button></div>
               <div><p class="margintb">Row:</p><input id="newheight" onchange="validatenumber('newheight')" class="controls" type="number" value="25" style="width: 4vw;"></div>
               <div><p class="margintb">Mines:</p><input id="newmines" onchange="validatenumber('newmines')" class="controls" type="number" value="100" style="width: 4vw;"></div>
-
             </div>
               <div class="flexstyle">
                 <button class="controls" style="width: 55%;margin:17px;" onclick="creategame()">ok</button>

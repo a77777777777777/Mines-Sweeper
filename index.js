@@ -86,6 +86,7 @@ function hard(){
 }
 function showdialog(dialog){
     menuvisible=0;
+    document.getElementById(dialog).style.top=document.getElementById("gamegrid").offsetTop+"px";
     document.getElementById(dialog).classList.remove("hide");
 }
 function hidedialog(){
@@ -121,7 +122,7 @@ function createGrid(h,w){
     if(h>w){
         boxsize=Math.floor(size/h)-2;
     }else boxsize=Math.floor(size/w)-2;
-    if(boxsize>40) boxsize=40;
+    if(boxsize>44) boxsize=44;
     if(mines>(height*width))mines=Math.floor((height*width)/3);
     if(mines===0)mines=Math.floor((height*width)/3);
     if(timerid>0){clearInterval(timerid); timerid=0;}
@@ -154,6 +155,15 @@ function createGrid(h,w){
             if(e.button==2 && isStarted){ 
                 if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
                 else document.getElementById(this.id).innerText="🚩";
+            }
+            return;
+        });
+        document.getElementById(a+","+b).addEventListener("touchend",function(e){
+            if(isStarted){ 
+                if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
+                else document.getElementById(this.id).innerText="🚩";
+                
+                document.getElementById("footer").innerText="e.detail";
             }
             return;
         });
