@@ -158,14 +158,11 @@ function createGrid(h,w){
             }
             return;
         });
-        document.getElementById(a+","+b).addEventListener("touchmove",function(e){
-            if(isStarted) touchcount+=1;
-        });
         document.getElementById(a+","+b).addEventListener("touchstart",function(e){
             if(isStarted) touchcount=1;
         });
         document.getElementById(a+","+b).addEventListener("touchend",function(e){
-            if(isStarted && touchcount>2){ 
+            if(isStarted && touchcount===1){ 
                 touchcount=0;
                 if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
                 else document.getElementById(this.id).innerText="🚩";
@@ -182,6 +179,7 @@ function createGrid(h,w){
 }
 
 function open(){
+    touchcount=0;
     var tmpid=this.id+"";
     if(!isStarted){
     for(var a=0;a<height;a++){
