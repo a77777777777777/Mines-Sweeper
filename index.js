@@ -180,8 +180,8 @@ function createGrid(h,w){
 function setflag(id){
     if(touchcount===1){
         touchcount=0;
-        if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
-        else document.getElementById(this.id).innerText="🚩";
+        if(document.getElementById(id).innerText=="🚩") document.getElementById(id).innerText="";
+        else document.getElementById(id).innerText="🚩";
     }
 }
 function open(){
