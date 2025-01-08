@@ -166,7 +166,7 @@ function createGrid(h,w){
         });
         document.getElementById(a+","+b).addEventListener("touchend",function(e){
             if(isStarted){
-                setTimeout(setflag(e.target.id),310);
+                setTimeout(setflag(this.id),310);
             }
         });
     }
@@ -177,11 +177,12 @@ function createGrid(h,w){
  timerid=setInterval(timer,1000);
  document.getElementById('w1').classList.add("hide");
 }
-function setflag(id){
+function setflag(tempid){
+    document.getElementById("footer").innerText=tempid.toString();
     if(touchcount===1){
         touchcount=0;
-        if(document.getElementById(id).innerText=="🚩") document.getElementById(id).innerText="";
-        else document.getElementById(id).innerText="🚩";
+        if(document.getElementById(tempid).innerText=="🚩") document.getElementById(tempid).innerText="";
+        else document.getElementById(tempid).innerText="🚩";
     }
 }
 function open(){
