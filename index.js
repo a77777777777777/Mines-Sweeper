@@ -158,15 +158,19 @@ function createGrid(h,w){
             }
             return;
         });
-        document.getElementById(a+","+b).addEventListener("touchstart",function(e){
+        document.getElementById(a+","+b).addEventListener("touchmove",function(e){
             if(isStarted) touchcount+=1;
         });
+        document.getElementById(a+","+b).addEventListener("touchstart",function(e){
+            if(isStarted) touchcount=1;
+        });
         document.getElementById(a+","+b).addEventListener("touchend",function(e){
-            if(isStarted && touchcount>50){ 
+            if(isStarted && touchcount>2){ 
                 touchcount=0;
                 if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
                 else document.getElementById(this.id).innerText="🚩";
             }
+            return;
         });
     }
  }
