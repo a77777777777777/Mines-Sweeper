@@ -172,7 +172,7 @@ function createGrid(h,w){
                     if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
                     else document.getElementById(this.id).innerText="🚩";
                 }
-                },220);
+                },340);
             }
             return;
         });
