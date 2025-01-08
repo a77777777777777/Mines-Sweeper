@@ -169,8 +169,8 @@ function createGrid(h,w){
                 setTimeout(()=>{ 
                     if(touchcount===1){
                         touchcount=0;
-                        if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
-                        else document.getElementById(this.id).innerText="🚩";
+                        //if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
+                        //else document.getElementById(this.id).innerText="🚩";
                     }
                 },220);
             }
@@ -221,7 +221,6 @@ function open(){
 function openBox(h1,w1){
     //alert(minesgrid[h][w]);
     //alert(h1+","+w1);
-    document.getElementById(h1+","+w1).innerText="";
     var isempty=true;
     if(minesgrid[h1][w1]===1){
         document.getElementById(h1+","+w1).innerText="💥";
