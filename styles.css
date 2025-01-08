@@ -1,13 +1,15 @@
 body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   text-align: center;
   background-color: #283149;
+  line-height: 1.5;
+  font-size: 1rem;
   user-select: none;
-  width: 100vw;
-  height: 100vh;
 }
 
 h1 {
   font-size: 5rem;
+  margin:13px;
   color: #DBEDF3;
   font-family: "Arvo", cursive;
   text-shadow: 3px 0 #DA0463;
