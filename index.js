@@ -161,6 +161,9 @@ function createGrid(h,w){
         document.getElementById(a+","+b).addEventListener("touchstart",function(e){
             touchcount=1;
         });
+        document.getElementById(a+","+b).addEventListener("touchmove",function(e){
+            touchcount=0;
+        });
         document.getElementById(a+","+b).addEventListener("touchend",function(e){
             if(isStarted){
                 setTimeout(()=>{
@@ -177,7 +180,7 @@ function createGrid(h,w){
  }
  document.getElementById("gamegrid").style.setProperty("grid-template-columns",column);
  document.getElementById("gamegrid").style.setProperty("grid-template-rows",row);
- document.getElementById("gamegrid").style.setProperty("width",(w*(boxsize))+8+"px");
+ document.getElementById("gamegrid").style.setProperty("width",(w*(boxsize))+"px");
  timerid=setInterval(timer,1000);
  document.getElementById('w1').classList.add("hide");
 }
