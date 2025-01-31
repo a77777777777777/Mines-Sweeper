@@ -13,10 +13,15 @@ height=10;
 width=10;
 var isStarted=false;
 var touchcount=0;
-resetgridboxsize();
-createGrid(height,width);
 
-hidemenu();
+window.onload=()=>{
+    document.getElementById("loading").style.display="none";
+    clearInterval(loadingid);
+    resetgridboxsize();
+    createGrid(height,width);
+    hidemenu();
+}
+
 document.addEventListener("contextmenu",(e)=>{e.preventDefault();});
 
 window.onclick = function(event) {
