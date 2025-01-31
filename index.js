@@ -18,8 +18,9 @@ window.onload=()=>{
     //document.getElementById("loading").style.display="none"; clearInterval(loadingid);
     resetgridboxsize();
     createGrid(height,width);
-    hidemenu();
+    hidemenu(); hideloading();
 }
+function hideloading(){clearInterval(loadingid);document.getElementById("loading").style.display="none";}
 
 document.addEventListener("contextmenu",(e)=>{e.preventDefault();});
 
