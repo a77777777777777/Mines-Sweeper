@@ -15,8 +15,7 @@ var isStarted=false;
 var touchcount=0;
 
 window.onload=()=>{
-    document.getElementById("loading").style.display="none";
-    clearInterval(loadingid);
+    //document.getElementById("loading").style.display="none"; clearInterval(loadingid);
     resetgridboxsize();
     createGrid(height,width);
     hidemenu();
