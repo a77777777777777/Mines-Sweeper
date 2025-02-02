@@ -71,11 +71,15 @@ footer {
   cursor:pointer;
   font-size: 20px;
   position: relative;
-  color:rgb(68, 0, 255);
+  color:rgb(255, 255, 255);
+  background-color: #0320b0;
+  border-radius: 5px;
+  width:130px;
   text-align: center;
 }
 .menuitems:hover{
-  color: rgba(255, 255, 255, 0.892);
+  color: rgba(32, 32, 32, 0.892);
+  background-color: #91ebff;
 }
 
 .menuitems-content{
@@ -94,14 +98,14 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:5px;
+  gap:12px;
 }
 .contentlist{
   padding:8px 8px 8px 8px; 
 }
 .contentlist:hover{
-  background-color: rgba(125, 129, 247, 0.888);
-  color: rgba(38, 0, 255, 0.892);
+  color: rgba(32, 32, 32, 0.892);
+  background-color: #91ebff;
 }
 .hide{
   display: none;
@@ -127,8 +131,8 @@ footer {
 .dialogboxbg{
   z-index: 2;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh; top:0px; left:0px;
   background-color: rgba(0, 0, 0, 0.1);
 }
 .dialogbox{
