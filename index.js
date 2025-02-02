@@ -91,7 +91,7 @@ function hard(){
 }
 function showdialog(dialog){
     menuvisible=0;
-    document.getElementById(dialog).style.top=document.getElementById("gamegrid").offsetTop+"px";
+    document.getElementById("newdialog").style.top=document.getElementById("gamegrid").offsetTop+"px";
     document.getElementById(dialog).classList.remove("hide");
 }
 function hidedialog(){
