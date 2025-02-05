@@ -4,30 +4,14 @@
   <meta charset="utf-8">
   <title>Minesweeper</title><link rel="stylesheet" href="styles.css">
 </head>
-<style>
-  .geartooth{
-    position:absolute;
-    border-radius: 2px;
-    height:8px;
-    width:8px;
-    background-color: rgb(18, 174, 253);
-  }
-  #loading{
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 100vw;
-    height: 100vh;
-    top:0; left:0; z-index: 100;
-  }
-  </style>
-  <script>
+<style>.geartooth{position:absolute; border-radius: 2px;height:8px; width:8px;background-color: rgb(25, 83, 255);} #loading{position: absolute; background-color: rgba(0, 0, 0, 0.7); width: 100vw; height: 100vh; top:0; left:0; z-index: 100; }</style>
+<script>
   var rotation=0;const loadingid=setInterval(()=>{rotation+=3; if(rotation>360)rotation=3; document.getElementById("loadingbox").style.transform="rotate("+rotation+"deg)";},1);
   </script>
 <body>
 
-  <div id="loading"><div id="loadingbox" style="position: absolute;top:43vh;left:49vw;"><div style="border-radius: 30px;border:10px solid rgb(18, 174, 253);height: 20px;width: 20px;">
-        <div class="geartooth" style="top:-6px;left:16px;"></div><div class="geartooth" style="top:0px;left:31px;rotate: -45deg;"></div><div class="geartooth" style="top:1px;left:-1px;rotate: -45deg;"></div><div class="geartooth" style="top:17px;left:-7px;"></div>
-        <div class="geartooth" style="top:17px;left:37px;"></div><div class="geartooth" style="top:31px;left:1px;rotate: -45deg;"></div><div class="geartooth" style="top:31px;left:31px;rotate: -45deg;"></div><div class="geartooth" style="top:37px;left:16px;"></div>
+  <div id="loading"><div id="loadingbox" style="position: absolute;top:43vh;left:49vw;">
+    <div style="border-radius: 50px;border:10px solid rgb(25, 83, 255);height: 14px;width: 14px;"><div class="geartooth" style="top:-16px;left:13px;"></div><div class="geartooth" style="top:-8px;left:34px;rotate: -45deg;"></div><div class="geartooth" style="top:-7px;left:-9px;rotate: -45deg;"></div><div class="geartooth" style="top:14px;left:-17px;"></div><div class="geartooth" style="top:14px;left:42px;"></div><div class="geartooth" style="top:34px;left:-8px;rotate: -45deg;"></div><div class="geartooth" style="top:34px;left:34px;rotate: -45deg;"></div><div class="geartooth" style="top:41.8px;left:13px;"></div>
   </div></div></div>
 
   <div id="w1" class="dialogboxbg background" style="display: none;cursor: wait;">&nbsp;</div>

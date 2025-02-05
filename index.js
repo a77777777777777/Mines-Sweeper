@@ -127,9 +127,9 @@ function createGrid(h,w){
     if(h>w){
         boxsize=Math.floor(size/h)-2;
     }else boxsize=Math.floor(size/w)-2;
-    if(boxsize>44) boxsize=44;
-    if(mines>(height*width))mines=Math.floor((height*width)/3);
-    if(mines===0)mines=Math.floor((height*width)/3);
+    if(boxsize>44) boxsize=44; if(boxsize<20) boxsize=20;
+    if(mines>(height*width))mines=Math.floor((height*width)/4);
+    if(mines===0)mines=Math.floor((height*width)/4);
     if(timerid>0){clearInterval(timerid); timerid=0;}
     minutes=0;
     seconds=0;
@@ -143,16 +143,17 @@ function createGrid(h,w){
         minesoppenedgrid[a]=new Array(width);
     }
     document.querySelector("div.set").innerHTML="";
-    var row="",column="";
+    var row="",column="",innterhtml="";
  for(var a=0;a<h;a++){
     row=row+" 1fr";
     column="";
     for(var b=0;b<w;b++){
         column=column+" 1fr";
-        document.querySelector("div.set").innerHTML+="<button class='btnbox "+currenttheme+"' id='"+a+","+b+"' style='height:"+boxsize+"px;width:"+boxsize+"px;font-size:"+boxsize/2+"px;'></button>";
+        innterhtml+="<button class='btnbox "+currenttheme+"' id='"+a+","+b+"' style='height:"+boxsize+"px;width:"+boxsize+"px;font-size:"+boxsize/2+"px;'></button>";
         //document.getElementById(a+""+b).addEventListener("click",open);
     }
  }
+ document.querySelector("div.set").innerHTML=innterhtml;
  for(var a=0;a<h;a++){
     for(var b=0;b<w;b++){
         document.getElementById(a+","+b).addEventListener("click",open);
