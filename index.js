@@ -225,8 +225,6 @@ function open(){
    openBox((tmpid.slice(0,tmpid.indexOf(","))*1),(tmpid.slice(tmpid.indexOf(",")+1,tmpid.length)*1));
 }
 function openBox(h1,w1){
-    //alert(minesgrid[h][w]);
-    //alert(h1+","+w1);
     var isempty=true;
     if(minesgrid[h1][w1]===1){
         document.getElementById(h1+","+w1).innerText="💥";
@@ -257,97 +255,24 @@ function openBox(h1,w1){
       {
         minesoppenedgrid[h1][w1]=1;
         setStyle(h1+","+w1);
-        var minesoppened=0;
-        while(isempty){
-            for(var h=0;h<height;h++){
-                for(var w=0;w<width;w++){
-                    if(minesoppenedgrid[h][w]===1){
-                        if(h===0){
-                            if(w===0){
-                                if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
-                                if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; minesoppened++;}
-                                if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
-                            }else if(w===(width-1)){
-                                if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
-                                if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; minesoppened++;}
-                                if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
-                            }
-                            else{
-                                if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
-                                if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
-                                if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; minesoppened++;}
-                                if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
-                                if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; minesoppened++;}
-                            }
-                        }else if(h===(height-1)){
-                            if(w===0){
-                               if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
-                               if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; minesoppened++;}
-                               if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
-                            }else if(w===(width-1)){
-                                if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
-                                if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; minesoppened++;}
-                                if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
-                            }
-                            else{
-                                if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
-                                if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
-                                if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; minesoppened++;}
-                                if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
-                                if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; minesoppened++;}
-                            }
-                        }else if(w===0){
-                                if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
-                                if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
-                                if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; minesoppened++;}
-                                if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
-                                if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; minesoppened++;}
-                            }
-                        else if(w===(width-1)){
-                            if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
-                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
-                            if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; minesoppened++;}
-                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
-                            if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; minesoppened++;}
-                        }else{
-                            if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
-                            if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; minesoppened++;}
-                            if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; minesoppened++;}
-                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
-                            if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; minesoppened++;}
-                            if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; minesoppened++;}
-                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
-                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
-                        }
-                    }
-                        if(minesoppened>0){
-                        break;
-                        }
-                }
-                        if(minesoppened>0){
-                        break;
-                        }
-            }
-            if(minesoppened>0){
-                minesoppened=0;
-            }else{
-                isempty=false;
-            }
-        }
+        findpath(h1,w1);
         for(var h=0;h<height;h++){
             for(var w=0;w<width;w++){
                 if(minesoppenedgrid[h][w]===1){
                     if(h===0){
                         if(w===0){
+                            if(minescountgrid[h+1][w]===0) findpath(h+1,w);if(minescountgrid[h+1][w+1]===0) findpath(h+1,w+1);if(minescountgrid[h][w+1]===0) findpath(h,w+1);
                             if(minescountgrid[h+1][w]!=9 && minesoppenedgrid[h+1][w] ===0){minesoppenedgrid[h+1][w] =2;setStyle((h+1)+","+w);document.getElementById((h+1)+","+w).innerText=minescountgrid[h+1][w]; }
                             if(minescountgrid[h+1][w+1]!=9 && minesoppenedgrid[h+1][w+1] ===0){minesoppenedgrid[h+1][w+1] =2;setStyle((h+1)+","+(w+1));document.getElementById((h+1)+","+(w+1)).innerText=minescountgrid[h+1][w+1]; }
                             if(minescountgrid[h][w+1]!=9 && minesoppenedgrid[h][w+1] ===0){minesoppenedgrid[h][w+1] =2;setStyle((h)+","+(w+1));document.getElementById((h)+","+(w+1)).innerText=minescountgrid[h][w+1]; }
                         }else if(w===(width-1)){
+                            if(minescountgrid[h+1][w]===0) findpath(h+1,w);if(minescountgrid[h+1][w-1]===0) findpath(h+1,w-1);if(minescountgrid[h][w-1]===0) findpath(h,w-1);
                             if(minescountgrid[h+1][w]!=9 && minesoppenedgrid[h+1][w] ===0){minesoppenedgrid[h+1][w] =2;setStyle((h+1)+","+w);document.getElementById((h+1)+","+w).innerText=minescountgrid[h+1][w]; }
                             if(minescountgrid[h+1][w-1]!=9 && minesoppenedgrid[h+1][w-1] ===0){minesoppenedgrid[h+1][w-1] =2;setStyle((h+1)+","+(w-1));document.getElementById((h+1)+","+(w-1)).innerText=minescountgrid[h+1][w-1]; }
                             if(minescountgrid[h][w-1]!=9 && minesoppenedgrid[h][w-1] ===0){minesoppenedgrid[h][w-1] =2;setStyle((h)+","+(w-1));document.getElementById((h)+","+(w-1)).innerText=minescountgrid[h][w-1]; }
                         }
                         else{
+                            if(minescountgrid[h][w-1]===0) findpath(h,w-1);if(minescountgrid[h][w+1]===0) findpath(h,w+1);if(minescountgrid[h+1][w-1]===0) findpath(h+1,w-1);if(minescountgrid[h+1][w]===0) findpath(h+1,w);if(minescountgrid[h+1][w+1]===0) findpath(h+1,w+1);
                             if(minescountgrid[h][w-1]!=9 && minesoppenedgrid[h][w-1] ===0){minesoppenedgrid[h][w-1] =2;setStyle((h)+","+(w-1));document.getElementById((h)+","+(w-1)).innerText=minescountgrid[h][w-1]; }
                             if(minescountgrid[h][w+1]!=9 && minesoppenedgrid[h][w+1] ===0){minesoppenedgrid[h][w+1] =2;setStyle((h)+","+(w+1));document.getElementById((h)+","+(w+1)).innerText=minescountgrid[h][w+1]; }
                             if(minescountgrid[h+1][w-1]!=9 && minesoppenedgrid[h+1][w-1] ===0){minesoppenedgrid[h+1][w-1] =2;setStyle((h+1)+","+(w-1));document.getElementById((h+1)+","+(w-1)).innerText=minescountgrid[h+1][w-1]; }
@@ -356,15 +281,18 @@ function openBox(h1,w1){
                         }
                     }else if(h===(height-1)){
                         if(w===0){
+                            if(minescountgrid[h-1][w]===0) findpath(h-1,w);if(minescountgrid[h-1][w+1]===0) findpath(h-1,w+1);if(minescountgrid[h][w+1]===0) findpath(h,w+1);
                            if(minescountgrid[h-1][w]!=9 && minesoppenedgrid[h-1][w] ===0){minesoppenedgrid[h-1][w] =2;setStyle((h-1)+","+w);document.getElementById((h-1)+","+w).innerText=minescountgrid[h-1][w]; }
                            if(minescountgrid[h-1][w+1]!=9 && minesoppenedgrid[h-1][w+1] ===0){minesoppenedgrid[h-1][w+1] =2;setStyle((h-1)+","+(w+1));document.getElementById((h-1)+","+(w+1)).innerText=minescountgrid[h-1][w+1]; }
                            if(minescountgrid[h][w+1]===9 && minesoppenedgrid[h][w+1] ===0){minesoppenedgrid[h][w+1] =2;setStyle((h)+","+(w+1));document.getElementById((h)+","+(w+1)).innerText=minescountgrid[h][w+1]; }
                         }else if(w===(width-1)){
+                            if(minescountgrid[h-1][w]===0) findpath(h-1,w);if(minescountgrid[h-1][w-1]===0) findpath(h-1,w-1);if(minescountgrid[h][w-1]===0) findpath(h,w-1);
                             if(minescountgrid[h-1][w]!=9 && minesoppenedgrid[h-1][w] ===0){minesoppenedgrid[h-1][w] =2;setStyle((h-1)+","+w);document.getElementById((h-1)+","+w).innerText=minescountgrid[h-1][w]; }
                             if(minescountgrid[h-1][w-1]!=9 && minesoppenedgrid[h-1][w-1] ===0){minesoppenedgrid[h-1][w-1] =2;setStyle((h-1)+","+(w-1));document.getElementById((h-1)+","+(w-1)).innerText=minescountgrid[h-1][w-1]; }
                             if(minescountgrid[h][w-1]!=9 && minesoppenedgrid[h][w-1] ===0){minesoppenedgrid[h][w-1] =2;setStyle((h)+","+(w-1));document.getElementById((h)+","+(w-1)).innerText=minescountgrid[h][w-1]; }
                         }
                         else{
+                            if(minescountgrid[h][w-1]===0) findpath(h,w-1);if(minescountgrid[h][w+1]===0) findpath(h,w+1);if(minescountgrid[h-1][w-1]===0) findpath(h-1,w-1);if(minescountgrid[h-1][w]===0) findpath(h-1,w);if(minescountgrid[h-1][w+1]===0) findpath(h-1,w+1);
                             if(minescountgrid[h][w-1]!=9 && minesoppenedgrid[h][w-1] ===0){minesoppenedgrid[h][w-1] =2;setStyle((h)+","+(w-1));document.getElementById((h)+","+(w-1)).innerText=minescountgrid[h][w-1]; }
                             if(minescountgrid[h][w+1]!=9 && minesoppenedgrid[h][w+1] ===0){minesoppenedgrid[h][w+1] =2;setStyle((h)+","+(w+1));document.getElementById((h)+","+(w+1)).innerText=minescountgrid[h][w+1]; }
                             if(minescountgrid[h-1][w-1]!=9 && minesoppenedgrid[h-1][w-1] ===0){minesoppenedgrid[h-1][w-1] =2;setStyle((h-1)+","+(w-1));document.getElementById((h-1)+","+(w-1)).innerText=minescountgrid[h-1][w-1]; }
@@ -372,6 +300,7 @@ function openBox(h1,w1){
                             if(minescountgrid[h-1][w+1]!=9 && minesoppenedgrid[h-1][w+1] ===0){minesoppenedgrid[h-1][w+1] =2;setStyle((h-1)+","+(w+1));document.getElementById((h-1)+","+(w+1)).innerText=minescountgrid[h-1][w+1]; }
                         }
                     }else if(w===0){
+                            if(minescountgrid[h-1][w]===0) findpath(h-1,w);if(minescountgrid[h+1][w]===0) findpath(h+1,w);if(minescountgrid[h-1][w+1]===0) findpath(h-1,w+1);if(minescountgrid[h][w+1]===0) findpath(h,w+1);if(minescountgrid[h+1][w+1]===0) findpath(h+1,w+1);
                             if(minescountgrid[h-1][w]!=9 && minesoppenedgrid[h-1][w] ===0){minesoppenedgrid[h-1][w] =2;setStyle((h-1)+","+w);document.getElementById((h-1)+","+w).innerText=minescountgrid[h-1][w]; }
                             if(minescountgrid[h+1][w]!=9 && minesoppenedgrid[h+1][w] ===0){minesoppenedgrid[h+1][w] =2;setStyle((h+1)+","+w);document.getElementById((h+1)+","+w).innerText=minescountgrid[h+1][w]; }
                             if(minescountgrid[h-1][w+1]!=9 && minesoppenedgrid[h-1][w+1] ===0){minesoppenedgrid[h-1][w+1] =2;setStyle((h-1)+","+(w+1));document.getElementById((h-1)+","+(w+1)).innerText=minescountgrid[h-1][w+1]; }
@@ -379,12 +308,15 @@ function openBox(h1,w1){
                             if(minescountgrid[h+1][w+1]!=9 && minesoppenedgrid[h+1][w+1] ===0){minesoppenedgrid[h+1][w+1] =2;setStyle((h+1)+","+(w+1));document.getElementById((h+1)+","+(w+1)).innerText=minescountgrid[h+1][w+1]; }
                         }
                     else if(w===(width-1)){
+                        if(minescountgrid[h-1][w]===0) findpath(h-1,w);if(minescountgrid[h+1][w]===0) findpath(h+1,w);if(minescountgrid[h-1][w-1]===0) findpath(h-1,w-1);if(minescountgrid[h][w-1]===0) findpath(h,w-1);if(minescountgrid[h+1][w-1]===0) findpath(h+1,w-1);
                         if(minescountgrid[h-1][w]!=9 && minesoppenedgrid[h-1][w] ===0){minesoppenedgrid[h-1][w] =2;setStyle((h-1)+","+w);document.getElementById((h-1)+","+w).innerText=minescountgrid[h-1][w]; }
                         if(minescountgrid[h+1][w]!=9 && minesoppenedgrid[h+1][w] ===0){minesoppenedgrid[h+1][w] =2;setStyle((h+1)+","+w);document.getElementById((h+1)+","+w).innerText=minescountgrid[h+1][w]; }
                         if(minescountgrid[h-1][w-1]!=9 && minesoppenedgrid[h-1][w-1] ===0){minesoppenedgrid[h-1][w-1] =2;setStyle((h-1)+","+(w-1));document.getElementById((h-1)+","+(w-1)).innerText=minescountgrid[h-1][w-1]; }
                         if(minescountgrid[h][w-1]!=9 && minesoppenedgrid[h][w-1] ===0){minesoppenedgrid[h][w-1] =2;setStyle((h)+","+(w-1));document.getElementById((h)+","+(w-1)).innerText=minescountgrid[h][w-1]; }
                         if(minescountgrid[h+1][w-1]!=9 && minesoppenedgrid[h+1][w-1] ===0){minesoppenedgrid[h+1][w-1] =2;setStyle((h+1)+","+(w-1));document.getElementById((h+1)+","+(w-1)).innerText=minescountgrid[h+1][w-1]; }
                     }else{
+                        if(minescountgrid[h-1][w]===0) findpath(h-1,w);if(minescountgrid[h-1][w+1]===0) findpath(h-1,w+1);if(minescountgrid[h-1][w-1]===0) findpath(h-1,w-1);
+                        if(minescountgrid[h+1][w]===0) findpath(h+1,w);if(minescountgrid[h+1][w+1]===0) findpath(h+1,w+1);if(minescountgrid[h+1][w-1]===0) findpath(h+1,w-1);if(minescountgrid[h][w+1]===0) findpath(h,w+1);if(minescountgrid[h][w-1]===0) findpath(h,w-1);
                         if(minescountgrid[h-1][w]!=9 && minesoppenedgrid[h-1][w] ===0){minesoppenedgrid[h-1][w] =2;setStyle((h-1)+","+w);document.getElementById((h-1)+","+w).innerText=minescountgrid[h-1][w]; }
                         if(minescountgrid[h-1][w+1]!=9 && minesoppenedgrid[h-1][w+1] ===0){minesoppenedgrid[h-1][w+1] =2;setStyle((h-1)+","+(w+1));document.getElementById((h-1)+","+(w+1)).innerText=minescountgrid[h-1][w+1]; }
                         if(minescountgrid[h-1][w-1]!=9 && minesoppenedgrid[h-1][w-1] ===0){minesoppenedgrid[h-1][w-1] =2;setStyle((h-1)+","+(w-1));document.getElementById((h-1)+","+(w-1)).innerText=minescountgrid[h-1][w-1]; }
@@ -399,7 +331,7 @@ function openBox(h1,w1){
         }
       }
     }
-    minesoppened=0;
+    var minesoppened=0;
     for(var h=0;h<height;h++){
         for(var w=0;w<width;w++){
             if(minesoppenedgrid[h][w]===0) minesoppened+=1;
@@ -426,7 +358,151 @@ function setStyle(tmpid){
     document.getElementById(tmpid).innerText="";
     document.getElementById(tmpid).disabled=true;
 }
-
+function findpath1(h,w){
+    
+    var minesoppened=0; var isempty=true;
+    while(isempty){
+        for(var h=0;h<height;h++){
+            for(var w=0;w<width;w++){
+                if(minesoppenedgrid[h][w]===1){
+                    if(h===0){
+                        if(w===0){
+                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
+                            if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; minesoppened++;}
+                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
+                        }else if(w===(width-1)){
+                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
+                            if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; minesoppened++;}
+                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
+                        }
+                        else{
+                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
+                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
+                            if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; minesoppened++;}
+                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
+                            if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; minesoppened++;}
+                        }
+                    }else if(h===(height-1)){
+                        if(w===0){
+                           if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
+                           if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; minesoppened++;}
+                           if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
+                        }else if(w===(width-1)){
+                            if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
+                            if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; minesoppened++;}
+                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
+                        }
+                        else{
+                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
+                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
+                            if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; minesoppened++;}
+                            if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
+                            if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; minesoppened++;}
+                        }
+                    }else if(w===0){
+                            if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
+                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
+                            if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; minesoppened++;}
+                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
+                            if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; minesoppened++;}
+                        }
+                    else if(w===(width-1)){
+                        if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
+                        if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
+                        if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; minesoppened++;}
+                        if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
+                        if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; minesoppened++;}
+                    }else{
+                        if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; minesoppened++;}
+                        if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; minesoppened++;}
+                        if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; minesoppened++;}
+                        if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; minesoppened++;}
+                        if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; minesoppened++;}
+                        if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; minesoppened++;}
+                        if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; minesoppened++;}
+                        if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; minesoppened++;}
+                    }
+                }
+                    if(minesoppened>0){
+                    break;
+                    }
+            }
+                    if(minesoppened>0){
+                    break;
+                    }
+        }
+        if(minesoppened>0){
+            minesoppened=0;
+        }else{
+            isempty=false;
+        }
+    }
+}
+function findpath(h,w){
+         try{
+                if(minesoppenedgrid[h][w]===1){
+                    if(h===0){
+                        if(w===0){
+                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; findpath(h+1,w);}
+                            if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; findpath(h+1,w+1);}
+                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; findpath(h,w+1);}
+                        }else if(w===(width-1)){
+                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; findpath(h+1,w);}
+                            if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; findpath(h+1,w-1);}
+                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; findpath(h,w-1);}
+                        }
+                        else{
+                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; findpath(h,w-1);}
+                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; findpath(h,w+1);}
+                            if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; findpath(h+1,w-1);}
+                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; findpath(h+1,w);}
+                            if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; findpath(h+1,w+1);}
+                        }
+                    }else if(h===(height-1)){
+                        if(w===0){
+                           if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; findpath(h-1,w);}
+                           if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; findpath(h-1,w+1);}
+                           if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; findpath(h,w+1);}
+                        }else if(w===(width-1)){
+                            if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; findpath(h-1,w);}
+                            if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; findpath(h-1,w-1);}
+                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; findpath(h,w-1);}
+                        }
+                        else{
+                            if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; findpath(h,w-1);}
+                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; findpath(h,w+1);}
+                            if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; findpath(h-1,w-1);}
+                            if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; findpath(h-1,w);}
+                            if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; findpath(h-1,w+1);}
+                        }
+                    }else if(w===0){
+                            if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; findpath(h-1,w);}
+                            if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; findpath(h+1,w);}
+                            if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1;findpath(h-1,w+1);}
+                            if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; findpath(h,w+1);}
+                            if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; findpath(h+1,w+1);}
+                        }
+                    else if(w===(width-1)){
+                        if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1;findpath(h-1,w);}
+                        if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; findpath(h+1,w);}
+                        if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; findpath(h-1,w-1);}
+                        if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; findpath(h,w-1);}
+                        if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; findpath(h+1,w-1);}
+                    }else{
+                        if(minescountgrid[h-1][w]===0 && minesoppenedgrid[h-1][w]!=1){setStyle((h-1)+","+w);minesoppenedgrid[h-1][w]=1; findpath(h-1,w);}
+                        if(minescountgrid[h-1][w+1]===0 && minesoppenedgrid[h-1][w+1]!=1){setStyle((h-1)+","+(w+1));minesoppenedgrid[h-1][w+1]=1; findpath(h-1,w+1);}
+                        if(minescountgrid[h-1][w-1]===0 && minesoppenedgrid[h-1][w-1]!=1){setStyle((h-1)+","+(w-1));minesoppenedgrid[h-1][w-1]=1; findpath(h-1,w-1);}
+                        if(minescountgrid[h+1][w]===0 && minesoppenedgrid[h+1][w]!=1){setStyle((h+1)+","+w);minesoppenedgrid[h+1][w]=1; findpath(h+1,w);}
+                        if(minescountgrid[h+1][w+1]===0 && minesoppenedgrid[h+1][w+1]!=1){setStyle((h+1)+","+(w+1));minesoppenedgrid[h+1][w+1]=1; findpath(h+1,w+1);}
+                        if(minescountgrid[h+1][w-1]===0 && minesoppenedgrid[h+1][w-1]!=1){setStyle((h+1)+","+(w-1));minesoppenedgrid[h+1][w-1]=1; findpath(h+1,w-1);}
+                        if(minescountgrid[h][w+1]===0 && minesoppenedgrid[h][w+1]!=1){setStyle((h)+","+(w+1));minesoppenedgrid[h][w+1]=1; findpath(h,w+1);}
+                        if(minescountgrid[h][w-1]===0 && minesoppenedgrid[h][w-1]!=1){setStyle((h)+","+(w-1));minesoppenedgrid[h][w-1]=1; findpath(h,w-1);}
+                    }
+                }
+            }catch(error){
+                findpath(h,w);
+            }
+}
 function countMines(){
     for(var h=0;h<height;h++){
         for(var w=0;w<width;w++){
