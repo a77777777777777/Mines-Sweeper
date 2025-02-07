@@ -23,11 +23,19 @@ window.onload=()=>{
 function hideloading(){clearInterval(loadingid);document.getElementById("loading").style.display="none";}
 
 document.addEventListener("contextmenu",(e)=>{e.preventDefault();});
+document.addEventListener("keydown",(e)=>{
+    if(menuvisible===0 && document.getElementById("new").classList.contains("hide")){
+        if(e.ctrlKey && (e.key==="z" || e.key==="Z"))begin();
+        else if(e.ctrlKey && e.key==="x" || e.key==="X")inter();
+        else if(e.ctrlKey && e.key==="c" || e.key==="C")hard();
+        else if(e.ctrlKey && e.key==="v" || e.key==="V")showdialog('new');
+    }
+});
 
 window.onclick = function(event) {
     if (!event.target.matches('.menulink')) {
       var dropdowns = document.getElementsByClassName("menuitems-content");
-      var i;
+      var i; menuvisible=0;
       for (i = 0; i < dropdowns.length; i++) {
         var openDropdown = dropdowns[i];
         if (!openDropdown.classList.contains('hide')) {
@@ -124,6 +132,7 @@ function swapheightwidth(){
 function createGrid(h,w){
     var boxsize;
     document.getElementById("footer").innerText="";
+    document.getElementById("time").innerText="00:00";
     if(h>w){
         boxsize=Math.floor(size/h)-2;
     }else boxsize=Math.floor(size/w)-2;
@@ -186,7 +195,6 @@ function createGrid(h,w){
  document.getElementById("gamegrid").style.setProperty("grid-template-columns",column);
  document.getElementById("gamegrid").style.setProperty("grid-template-rows",row);
  document.getElementById("gamegrid").style.setProperty("width",(w*(boxsize))+"px");
- timerid=setInterval(timer,1000);
  document.getElementById('w1').classList.add("hide");
 }
 
@@ -216,16 +224,17 @@ function open(){
     }
     isStarted=true;
     countMines();
-    //minesoppenedgrid[(tmpid.slice(0,tmpid.indexOf(","))*1)][(tmpid.slice(tmpid.indexOf(",")+1,tmpid.length)*1)]=1;
-    //for(var a=0;a<height;a++){
-    //    for(var b=0;b<width;b++)
-            //document.getElementById(a+","+b).innerText=minescountgrid[a][b];
-    //}
+    timerid=setInterval(timer,1000);
+        //minesoppenedgrid[(tmpid.slice(0,tmpid.indexOf(","))*1)][(tmpid.slice(tmpid.indexOf(",")+1,tmpid.length)*1)]=1;
+        //for(var a=0;a<height;a++){
+        //    for(var b=0;b<width;b++)
+        //        document.getElementById(a+","+b).innerText=minescountgrid[a][b];
+        //}
     }
    openBox((tmpid.slice(0,tmpid.indexOf(","))*1),(tmpid.slice(tmpid.indexOf(",")+1,tmpid.length)*1));
 }
 function openBox(h1,w1){
-    var isempty=true;
+    //var isempty=true;
     if(minesgrid[h1][w1]===1){
         document.getElementById(h1+","+w1).innerText="💥";
         document.getElementById(h1+","+w1).classList.remove(currenttheme);
@@ -284,7 +293,7 @@ function openBox(h1,w1){
                             if(minescountgrid[h-1][w]===0) findpath(h-1,w);if(minescountgrid[h-1][w+1]===0) findpath(h-1,w+1);if(minescountgrid[h][w+1]===0) findpath(h,w+1);
                            if(minescountgrid[h-1][w]!=9 && minesoppenedgrid[h-1][w] ===0){minesoppenedgrid[h-1][w] =2;setStyle((h-1)+","+w);document.getElementById((h-1)+","+w).innerText=minescountgrid[h-1][w]; }
                            if(minescountgrid[h-1][w+1]!=9 && minesoppenedgrid[h-1][w+1] ===0){minesoppenedgrid[h-1][w+1] =2;setStyle((h-1)+","+(w+1));document.getElementById((h-1)+","+(w+1)).innerText=minescountgrid[h-1][w+1]; }
-                           if(minescountgrid[h][w+1]===9 && minesoppenedgrid[h][w+1] ===0){minesoppenedgrid[h][w+1] =2;setStyle((h)+","+(w+1));document.getElementById((h)+","+(w+1)).innerText=minescountgrid[h][w+1]; }
+                           if(minescountgrid[h][w+1]!=9 && minesoppenedgrid[h][w+1] ===0){minesoppenedgrid[h][w+1] =2;setStyle((h)+","+(w+1));document.getElementById((h)+","+(w+1)).innerText=minescountgrid[h][w+1]; }
                         }else if(w===(width-1)){
                             if(minescountgrid[h-1][w]===0) findpath(h-1,w);if(minescountgrid[h-1][w-1]===0) findpath(h-1,w-1);if(minescountgrid[h][w-1]===0) findpath(h,w-1);
                             if(minescountgrid[h-1][w]!=9 && minesoppenedgrid[h-1][w] ===0){minesoppenedgrid[h-1][w] =2;setStyle((h-1)+","+w);document.getElementById((h-1)+","+w).innerText=minescountgrid[h-1][w]; }

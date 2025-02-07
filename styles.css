@@ -38,14 +38,14 @@ footer {
   border: 1px solid white;
   padding: 0px;
   outline: none;
-   text-align: center;
-   transition: 0.3s;
-   background-size: 200% auto;
-   color: white;            
+  text-align: center;
+  transition: 0.2s;
+  background-size: 200% auto;
+  color: white;            
  }
  .btnbox:hover {
    background-position: right center;
-   border: 1px solid rgb(114, 114, 114);
+   border: 1px solid rgb(205, 205, 205);
  }
  .btnclass{
     background-image: linear-gradient(to right, #4260f8 0%, #160357  61%, #0320b0  95%);
@@ -53,6 +53,7 @@ footer {
     background-size: 200% auto;
     border:2px solid  rgb(145, 145, 164);
     transition: 0.3s;
+    font-size: 1rem;
     height: 30px;
     width: 100px;
     color: white;
@@ -60,6 +61,7 @@ footer {
  .btnclass:hover {
    background-position: left right;
    border:2px solid rgb(255, 255, 255);
+   filter:brightness(120%);
  }
  a{
   text-decoration: none;
@@ -75,7 +77,6 @@ footer {
   background-color: #0320b0;
   border-radius: 5px;
   width:130px;
-  text-align: center;
 }
 .menuitems:hover{
   color: rgba(32, 32, 32, 0.892);
@@ -90,7 +91,7 @@ footer {
   padding-top: 2px;
   padding-bottom: 2px;
   flex-direction: column;
-  width: 160px;
+  width: 200px;
   position: absolute;
   border: 1px solid rgba(172, 171, 171, 0.518);
 }
@@ -101,7 +102,8 @@ footer {
   gap:12px;
 }
 .contentlist{
-  padding:8px 8px 8px 8px; 
+  text-align: left;
+  padding:4px 4px 4px 14px; 
 }
 .contentlist:hover{
   color: rgba(32, 32, 32, 0.892);
@@ -120,6 +122,9 @@ footer {
   margin:0;
   padding-right: 10px;
   cursor: pointer;
+}
+.closebtn:hover{
+  color:white;
 }
 .dialogtitle{
   display: flex;
@@ -165,7 +170,11 @@ input:focus{
   cursor: pointer;
   height: 20px;
   width:20px;
-  border:3.2px solid rgb(201, 198, 198);
+  filter:brightness(130%);
+  border:2.2px solid rgb(231, 231, 231);
+}
+.themebtn:hover{
+  border:3.2px solid rgb(231, 231, 231);
 }
 .theme1{
   background-image: linear-gradient(to right, #0a3dd7 0%, #3f90fa  95%);
