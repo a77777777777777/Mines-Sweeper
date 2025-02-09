@@ -11,11 +11,12 @@ var menuvisible=0;
 var currenttheme="blue";
 height=10;
 width=10;
-var isStarted=false;
-var touchcount=0;
+var isStarted=false,scanactive;
+var touchcount=0,scancount;
+
+const audio=new Audio("sounds/wrong.mp3");
 
 window.onload=()=>{
-    //document.getElementById("loading").style.display="none"; clearInterval(loadingid);
     resetgridboxsize();
     createGrid(height,width);
     hidemenu(); hideloading();
@@ -32,7 +33,13 @@ document.addEventListener("keydown",(e)=>{
     }
 });
 
-window.onclick = function(event) {
+window.onclick = function(event) { //console.log(event)
+    if(!event.target.matches("btnbox")){
+        if(scanactive && !event.target.matches(".scanbtn")){
+        scanactive=false;
+        document.getElementById("scan"+scancount).classList.remove("animatebtn");
+        }
+    }
     if (!event.target.matches('.menulink')) {
       var dropdowns = document.getElementsByClassName("menuitems-content");
       var i; menuvisible=0;
@@ -112,6 +119,12 @@ function menushow(){
     menuvisible=1;
     hidemenu();
 }
+function animatebutton(){
+    if(scancount>0 && isStarted){
+    scanactive=true;
+    document.getElementById("scan"+scancount).classList.add("animatebtn");
+    }
+}
 function creategame(){
     menuvisible=0;
     height=document.getElementById("newheight").value*1;
@@ -123,6 +136,8 @@ function creategame(){
 }
 function validatenumber(element){
     if(!(document.getElementById(element).value*1)>=1) document.getElementById(element).value=1;
+    document.getElementById("newmines").value=Math.floor(document.getElementById("newheight").value*document.getElementById("newwidth").value*0.2);
+
 }
 function swapheightwidth(){
     var a=document.getElementById("newheight").value;
@@ -130,15 +145,31 @@ function swapheightwidth(){
     document.getElementById("newwidth").value=a;
 }
 function createGrid(h,w){
-    var boxsize;
-    document.getElementById("footer").innerText="";
+    var boxsize; scanactive=false;
+    document.getElementById("footer").innerText="Total Mines: "+mines;
     document.getElementById("time").innerText="00:00";
     if(h>w){
         boxsize=Math.floor(size/h)-2;
     }else boxsize=Math.floor(size/w)-2;
-    if(boxsize>44) boxsize=44; if(boxsize<20) boxsize=20;
-    if(mines>(height*width))mines=Math.floor((height*width)/4);
-    if(mines===0)mines=Math.floor((height*width)/4);
+    if(boxsize>50) boxsize=50; if(boxsize<25) boxsize=25;
+    if(mines>(height*width))mines=Math.floor((height*width)/4); if(mines===0)mines=Math.floor((height*width)/4);
+    scancount=0;
+    document.getElementById("scan1").style.filter="invert(25%)";
+    document.getElementById("scan2").style.filter="invert(25%)";
+    document.getElementById("scan3").style.filter="invert(25%)";
+    if(mines>20 && mines<=50){ scancount=1;
+        document.getElementById("scan1").style.filter="invert(100%)";
+        document.getElementById("scan2").style.filter="invert(25%)";
+        document.getElementById("scan3").style.filter="invert(25%)";
+    }else if(mines>50 && mines<=100){ scancount=2;
+        document.getElementById("scan1").style.filter="invert(100%)";
+        document.getElementById("scan2").style.filter="invert(100%)";
+        document.getElementById("scan3").style.filter="invert(25%)";
+    }else if(mines>100){ scancount=3;
+        document.getElementById("scan1").style.filter="invert(100%)";
+        document.getElementById("scan2").style.filter="invert(100%)";
+        document.getElementById("scan3").style.filter="invert(100%)";
+    }
     if(timerid>0){clearInterval(timerid); timerid=0;}
     minutes=0;
     seconds=0;
@@ -222,6 +253,7 @@ function open(){
         }
         if(count===mines) tempBool=false;
     }
+    scanactive=false;
     isStarted=true;
     countMines();
     timerid=setInterval(timer,1000);
@@ -235,11 +267,26 @@ function open(){
 }
 function openBox(h1,w1){
     //var isempty=true;
+    if(scanactive){
+        if(scancount>0){
+            document.getElementById("scan"+scancount).style.filter="invert(25%)";
+            document.getElementById("scan"+scancount).classList.remove("animatebtn");
+
+            if(minescountgrid[h1][w1]===9) document.getElementById(h1+","+w1).innerText="💥";
+            else if(minescountgrid[h1][w1]>0)document.getElementById(h1+","+w1).innerText=minescountgrid[h1][w1];
+
+            minesoppenedgrid[h1][w1]=2;
+            document.getElementById(h1+","+w1).classList.remove(currenttheme);
+            document.getElementById(h1+","+w1).style.setProperty("background-color","#283149");
+            document.getElementById(h1+","+w1).disabled=true;
+            scancount--; scanactive=false;
+            return;
+        }
+    }
     if(minesgrid[h1][w1]===1){
         document.getElementById(h1+","+w1).innerText="💥";
         document.getElementById(h1+","+w1).classList.remove(currenttheme);
-        var tmpaud=new Audio("sounds/wrong.mp3");
-        tmpaud.play();
+        audio.play();
         for(var a=0;a<height;a++){
             for(var b=0;b<width;b++){
                 if(minesgrid[a][b]===1){

@@ -2,13 +2,12 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   text-align: center;
   background-color: #283149;
-  line-height: 1.5;
   font-size: 1rem;
   user-select: none;
 }
 
 h1 {
-  font-size: 4.4rem;
+  font-size: 4.3rem;
   margin:3px;
   color: #DBEDF3;
   font-family: "Arvo", cursive;
@@ -22,8 +21,7 @@ footer {
 }
 
 .set {
-  margin: 20px auto;
-  margin-top: 8px;
+  margin: 7px auto;
   display: grid;
   border: 4px solid rgb(94, 116, 149);
   border-radius: 8px;
@@ -125,6 +123,34 @@ footer {
 }
 .closebtn:hover{
   color:white;
+}
+ 
+@keyframes float {
+  from {
+    filter:invert(100%);
+  }
+  to {
+    filter:invert(10%);
+  }  
+}
+ 
+@keyframes float2 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }  
+}
+.animatebtn{
+animation: float 0.5s alternate infinite;
+}
+.scanbtn{
+  height: 25px;
+  cursor: pointer;
+}
+.scanbtn:hover{
+  animation: float2 0.5s alternate infinite;
 }
 .dialogtitle{
   display: flex;
