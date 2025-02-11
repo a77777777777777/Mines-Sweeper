@@ -12,7 +12,7 @@ var currenttheme="blue";
 height=10;
 width=10;
 var isStarted=false,scanactive;
-var touchcount=0,scancount;
+var touchcount,scancount,level="easy";
 
 const audio=new Audio("sounds/wrong.mp3");
 
@@ -25,6 +25,7 @@ function hideloading(){clearInterval(loadingid);document.getElementById("loading
 
 document.addEventListener("contextmenu",(e)=>{e.preventDefault();});
 document.addEventListener("keydown",(e)=>{
+    if(document.getElementById("pausewindow").style.display==="") return;
     if(menuvisible===0 && document.getElementById("new").classList.contains("hide")){
         if(e.ctrlKey && (e.key==="z" || e.key==="Z"))begin();
         else if(e.ctrlKey && e.key==="x" || e.key==="X")inter();
@@ -55,6 +56,16 @@ window.addEventListener("resize",()=>{
     resetgridboxsize();
 });
 
+
+document.getElementById("scan1").addEventListener("touchend",function(){
+    animatebutton();
+});
+document.getElementById("scan2").addEventListener("touchend",function(){
+    animatebutton();
+});
+document.getElementById("scan3").addEventListener("touchend",function(){
+    animatebutton();
+});
 function resetgridboxsize(){
     if(window.innerHeight>window.innerWidth){ //window.innerHeight>window.innerWidth screen.height>screen.width
         size=window.innerWidth;
@@ -63,6 +74,10 @@ function resetgridboxsize(){
         size=window.innerHeight;
         size=Math.floor(size*70/100);
     }
+    document.getElementById("pausewindow").style.width=document.getElementById("gamegrid").offsetWidth+"px";
+    document.getElementById("pausewindow").style.height=document.getElementById("gamegrid").offsetHeight+"px";
+    document.getElementById("pausewindow").style.top=document.getElementById("gamegrid").offsetTop+"px";
+    document.getElementById("pausewindow").style.left=document.getElementById("gamegrid").offsetLeft+"px";
 }
 
 function timer(){
@@ -85,6 +100,7 @@ function begin(){
     mines=13;
     isStarted=false;
     createGrid(height,width);
+    level="easy";
 }
 function inter(){
     menuvisible=0;
@@ -94,6 +110,7 @@ function inter(){
     mines=50;
     isStarted=false;
     createGrid(height,width);
+    level="med";
 }
 function hard(){
     menuvisible=0;
@@ -103,6 +120,7 @@ function hard(){
     mines=80;
     isStarted=false;
     createGrid(height,width);
+    level="hard";
 }
 function showdialog(dialog){
     menuvisible=0;
@@ -116,6 +134,7 @@ function hidemenu(){
     document.getElementById("settings1").classList.toggle("hide");
 }
 function menushow(){
+    if(document.getElementById("pausewindow").style.display==="") return;
     menuvisible=1;
     hidemenu();
 }
@@ -148,6 +167,7 @@ function createGrid(h,w){
     var boxsize; scanactive=false;
     document.getElementById("footer").innerText="Total Mines: "+mines;
     document.getElementById("time").innerText="00:00";
+    document.getElementById("reset").innerText="Pause";
     if(h>w){
         boxsize=Math.floor(size/h)-2;
     }else boxsize=Math.floor(size/w)-2;
@@ -173,7 +193,6 @@ function createGrid(h,w){
     if(timerid>0){clearInterval(timerid); timerid=0;}
     minutes=0;
     seconds=0;
-    document.getElementById("w1").classList.remove("hide");
     minesgrid=[];
     minescountgrid=[];
     minesoppenedgrid=[];
@@ -205,18 +224,17 @@ function createGrid(h,w){
             return;
         });
         document.getElementById(a+","+b).addEventListener("touchstart",function(e){
-            touchcount=1;
+            touchcount=e.target.id; console.log(e);
         });
         document.getElementById(a+","+b).addEventListener("touchmove",function(e){
-            touchcount=0;
+            
         });
-        document.getElementById(a+","+b).addEventListener("touchend",function(e){
+        document.getElementById(a+","+b).addEventListener("touchend",function(e){ console.log(e);
             if(isStarted){
                 setTimeout(()=>{ 
-                    if(touchcount===1){
-                        touchcount=0;
-                        //if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
-                        //else document.getElementById(this.id).innerText="🚩";
+                    if(touchcount===e.target.id){
+                        if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
+                        else document.getElementById(this.id).innerText="🚩";
                     }
                 },220);
             }
@@ -226,7 +244,11 @@ function createGrid(h,w){
  document.getElementById("gamegrid").style.setProperty("grid-template-columns",column);
  document.getElementById("gamegrid").style.setProperty("grid-template-rows",row);
  document.getElementById("gamegrid").style.setProperty("width",(w*(boxsize))+"px");
- document.getElementById('w1').classList.add("hide");
+ 
+ document.getElementById("pausewindow").style.width=document.getElementById("gamegrid").offsetWidth+"px";
+ document.getElementById("pausewindow").style.height=document.getElementById("gamegrid").offsetHeight+"px";
+ document.getElementById("pausewindow").style.top=document.getElementById("gamegrid").offsetTop+"px";
+ document.getElementById("pausewindow").style.left=document.getElementById("gamegrid").offsetLeft+"px";
 }
 
 function open(){
@@ -273,9 +295,7 @@ function openBox(h1,w1){
             document.getElementById("scan"+scancount).classList.remove("animatebtn");
 
             if(minescountgrid[h1][w1]===9) document.getElementById(h1+","+w1).innerText="💥";
-            else if(minescountgrid[h1][w1]>0)document.getElementById(h1+","+w1).innerText=minescountgrid[h1][w1];
-
-            minesoppenedgrid[h1][w1]=2;
+            else if(minescountgrid[h1][w1]>0){document.getElementById(h1+","+w1).innerText=minescountgrid[h1][w1]; minesoppenedgrid[h1][w1]=2;}
             document.getElementById(h1+","+w1).classList.remove(currenttheme);
             document.getElementById(h1+","+w1).style.setProperty("background-color","#283149");
             document.getElementById(h1+","+w1).disabled=true;
@@ -298,6 +318,7 @@ function openBox(h1,w1){
             }
         }
         isStarted=false;
+        document.getElementById("reset").innerText="Reset";
         document.getElementById("footer").innerText="Game over!";
         clearInterval(timerid);
     }
@@ -403,7 +424,9 @@ function openBox(h1,w1){
             }
         }
         isStarted=false;
+        validatehighscore(level,minutes,seconds,7)
         document.getElementById("footer").innerText="You win!";
+        document.getElementById("reset").innerText="Start";
         clearInterval(timerid);
     }
 }
@@ -597,6 +620,16 @@ function countMines(){
 function reset(){
     if(!isStarted){
         createGrid(height,width);
+    }else{
+        if(document.getElementById("reset").innerText==="Pause"){
+        document.getElementById("reset").innerText="Resume";
+        clearInterval(timerid);
+        document.getElementById("pausewindow").style.display="";
+        }else{
+            document.getElementById("reset").innerText="Pause";
+            timerid=setInterval(timer,1000);
+            document.getElementById("pausewindow").style.display="none";
+        }
     }
     document.getElementById("reset").blur();
 }
