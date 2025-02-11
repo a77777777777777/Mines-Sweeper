@@ -57,13 +57,13 @@ window.addEventListener("resize",()=>{
 });
 
 
-document.getElementById("scan1").addEventListener("touchend",function(){
+document.getElementById("scan1").addEventListener("touchstart",function(){
     animatebutton();
 });
-document.getElementById("scan2").addEventListener("touchend",function(){
+document.getElementById("scan2").addEventListener("touchstart",function(){
     animatebutton();
 });
-document.getElementById("scan3").addEventListener("touchend",function(){
+document.getElementById("scan3").addEventListener("touchstart",function(){
     animatebutton();
 });
 function resetgridboxsize(){
@@ -138,7 +138,7 @@ function menushow(){
     menuvisible=1;
     hidemenu();
 }
-function animatebutton(){
+function animatebutton(){ console.log("scancount"+scancount)
     if(scancount>0 && isStarted){
     scanactive=true;
     document.getElementById("scan"+scancount).classList.add("animatebtn");

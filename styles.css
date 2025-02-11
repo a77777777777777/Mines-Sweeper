@@ -143,14 +143,15 @@ footer {
   }  
 }
 .animatebtn{
-animation: float 0.5s alternate infinite;
+animation: float2 0.1s alternate infinite;
 }
 .scanbtn{
   height: 25px;
+  padding:5px 2px 5px 2px;
   cursor: pointer;
 }
 .scanbtn:hover{
-  animation: float2 0.5s alternate infinite;
+  animation: float2 0.1s  infinite;
 }
 .dialogtitle{
   display: flex;
