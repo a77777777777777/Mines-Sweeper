@@ -224,13 +224,13 @@ function createGrid(h,w){
             return;
         });
         document.getElementById(a+","+b).addEventListener("touchstart",function(e){
-            touchcount=e.target.id; console.log(e);
+            touchcount=e.target.id; //console.log(e);
         });
         document.getElementById(a+","+b).addEventListener("touchmove",function(e){
-            
+            touchcount="";
         });
-        document.getElementById(a+","+b).addEventListener("touchend",function(e){ console.log(e);
-            if(isStarted){
+        document.getElementById(a+","+b).addEventListener("touchend",function(e){ //console.log(e);
+            if(isStarted && !scanactive){
                 setTimeout(()=>{ 
                     if(touchcount===e.target.id){
                         if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
