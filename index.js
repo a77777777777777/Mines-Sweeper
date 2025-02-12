@@ -229,6 +229,9 @@ function createGrid(h,w){
         document.getElementById(a+","+b).addEventListener("touchmove",function(e){
             touchcount="";
         });
+        document.getElementById(a+","+b).addEventListener("touchcancel",function(e){
+            touchcount="";
+        });
         document.getElementById(a+","+b).addEventListener("touchend",function(e){ //console.log(e);
             if(isStarted && !scanactive){
                 setTimeout(()=>{ 
