@@ -36,8 +36,8 @@ document.addEventListener("keydown",(e)=>{
 
 window.onclick = function(event) { //console.log(event)
     if(!event.target.matches("btnbox")){
-        if(scanactive && !event.target.matches(".scanbtn")){
-        scanactive=false;
+        if(scanactive && !event.target.matches(".scanbtn") && !event.target.toString().includes("SVG")){
+        scanactive=false; //console.log(event.target)
         document.getElementById("scan"+scancount).classList.remove("animatebtn");
         }
     }
@@ -57,15 +57,6 @@ window.addEventListener("resize",()=>{
 });
 
 
-document.getElementById("scan1").addEventListener("touchstart",function(){
-    animatebutton();
-});
-document.getElementById("scan2").addEventListener("touchstart",function(){
-    animatebutton();
-});
-document.getElementById("scan3").addEventListener("touchstart",function(){
-    animatebutton();
-});
 function resetgridboxsize(){
     if(window.innerHeight>window.innerWidth){ //window.innerHeight>window.innerWidth screen.height>screen.width
         size=window.innerWidth;
@@ -218,25 +209,23 @@ function createGrid(h,w){
         document.getElementById(a+","+b).addEventListener("click",open);
         document.getElementById(a+","+b).addEventListener("mousedown",function(e){
             if(e.button==2 && isStarted){ 
-                if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
+                if(document.getElementById(this.id).innerText==="🚩") document.getElementById(this.id).innerText="";
                 else document.getElementById(this.id).innerText="🚩";
             }
             return;
         });
-        document.getElementById(a+","+b).addEventListener("touchstart",function(e){
+        document.getElementById(a+","+b).addEventListener("touchstart",function(e){  console.log("start"+e);
             touchcount=e.target.id; //console.log(e);
         });
         document.getElementById(a+","+b).addEventListener("touchmove",function(e){
             touchcount="";
         });
-        document.getElementById(a+","+b).addEventListener("touchcancel",function(e){
-            touchcount="";
-        });
-        document.getElementById(a+","+b).addEventListener("touchend",function(e){ //console.log(e);
+        document.getElementById(a+","+b).addEventListener("touchend",function(e){ console.log("end"+e);
             if(isStarted && !scanactive){
+                if(!document.getElementById(this.id).disabled)
                 setTimeout(()=>{ 
                     if(touchcount===e.target.id){
-                        if(document.getElementById(this.id).innerText=="🚩") document.getElementById(this.id).innerText="";
+                        if(document.getElementById(this.id).innerText==="🚩") document.getElementById(this.id).innerText="";
                         else document.getElementById(this.id).innerText="🚩";
                     }
                 },220);
