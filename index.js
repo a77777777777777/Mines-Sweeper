@@ -207,7 +207,7 @@ function createGrid(h,w){
  for(var a=0;a<h;a++){
     for(var b=0;b<w;b++){
         //document.getElementById(a+","+b).addEventListener("click",open);
-        document.getElementById(a+","+b).addEventListener("mousedown",function(e){ //console.log(e.button)
+        document.getElementById(a+","+b).addEventListener("mouseup",function(e){ //console.log(e.button)
             e.preventDefault();
             if(e.button===2 && isStarted){ 
                 if(document.getElementById(this.id).innerText==="🚩") document.getElementById(this.id).innerText="";
