@@ -206,30 +206,31 @@ function createGrid(h,w){
  document.querySelector("div.set").innerHTML=innterhtml;
  for(var a=0;a<h;a++){
     for(var b=0;b<w;b++){
-        document.getElementById(a+","+b).addEventListener("click",open);
-        document.getElementById(a+","+b).addEventListener("mousedown",function(e){
-            if(e.button==2 && isStarted){ 
+        //document.getElementById(a+","+b).addEventListener("click",open);
+        document.getElementById(a+","+b).addEventListener("mousedown",function(e){ //console.log(e.button)
+            if(e.button===2 && isStarted){ 
                 if(document.getElementById(this.id).innerText==="🚩") document.getElementById(this.id).innerText="";
                 else document.getElementById(this.id).innerText="🚩";
             }
+            if(e.button===0) open(this.id);
             return;
         });
-        document.getElementById(a+","+b).addEventListener("touchstart",function(e){  console.log("start"+e);
+        document.getElementById(a+","+b).addEventListener("touchstart",function(e){ e.preventDefault();  console.log("start"+e);
             touchcount=e.target.id; //console.log(e);
         });
         document.getElementById(a+","+b).addEventListener("touchmove",function(e){
             touchcount="";
         });
-        document.getElementById(a+","+b).addEventListener("touchend",function(e){ console.log("end"+e);
-            if(isStarted && !scanactive){
-                if(!document.getElementById(this.id).disabled)
-                setTimeout(()=>{ 
+        document.getElementById(a+","+b).addEventListener("touchend",function(e){e.preventDefault(); console.log("end"+e.touches.length);
+            if(isStarted && !scanactive && e.touches.length>0){
+                if(!document.getElementById(this.id).disabled) 
                     if(touchcount===e.target.id){
                         if(document.getElementById(this.id).innerText==="🚩") document.getElementById(this.id).innerText="";
                         else document.getElementById(this.id).innerText="🚩";
                     }
-                },220);
+                //setTimeout(()=>{ },220);
             }
+            if(e.touches.length===0)open(this.id);
         });
     }
  }
@@ -243,9 +244,9 @@ function createGrid(h,w){
  document.getElementById("pausewindow").style.left=document.getElementById("gamegrid").offsetLeft+"px";
 }
 
-function open(){
-    touchcount=0;
-    var tmpid=this.id+"";
+function open(id){
+    touchcount=0;//console.log(id)
+    var tmpid=id;//this.id+""; 
     if(!isStarted){
     for(var a=0;a<height;a++){
         for(var b=0;b<width;b++){
@@ -254,14 +255,14 @@ function open(){
             minesoppenedgrid[a][b]=0;
         }
     }
-    setStyle(this.id+"");
+    setStyle(id);//this.id+"");
     var tempBool=true;
     var count=0;
     var h,w;
     while(tempBool){
         h=Math.floor(Math.random()*height);
         w=Math.floor(Math.random()*width);
-        if(minesgrid[h][w]===0 && this.id!=(h+","+w)){
+        if(minesgrid[h][w]===0 && id!=(h+","+w)){
             minesgrid[h][w]=1;
             count++;
         }
