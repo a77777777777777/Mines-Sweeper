@@ -230,7 +230,7 @@ function createGrid(h,w){
                     }
                 //setTimeout(()=>{ },220);
             }
-            if(e.touches.length===0)open(this.id);
+            //if(e.touches.length===0)open(this.id);
         });
     }
  }
