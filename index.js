@@ -209,8 +209,8 @@ function createGrid(h,w){
         //document.getElementById(a+","+b).addEventListener("click",function(e){ open(this.id);}); //e.preventDefault();
         document.getElementById(a+","+b).addEventListener("mousemove",function(e){ touchcount="0";}); //e.preventDefault();
         document.getElementById(a+","+b).addEventListener("mousedown",function(e){ touchcount="";}); //e.preventDefault();
-        document.getElementById(a+","+b).addEventListener("mouseup",function(e){ //console.log(e.button)
-            //e.preventDefault();
+        document.getElementById(a+","+b).addEventListener("mouseup",function(e){ //console.log(e.button) //e.preventDefault();
+            console.log(this.id);
             if(e.button===2 && isStarted){ 
                 if(document.getElementById(this.id).innerText==="🚩") document.getElementById(this.id).innerText="";
                 else document.getElementById(this.id).innerText="🚩";
