@@ -208,14 +208,13 @@ function createGrid(h,w){
     for(var b=0;b<w;b++){
         //document.getElementById(a+","+b).addEventListener("click",function(e){ open(this.id);}); //e.preventDefault();
         document.getElementById(a+","+b).addEventListener("mousemove",function(e){ touchcount="0";}); //e.preventDefault();
+        document.getElementById(a+","+b).addEventListener("mousedown",function(e){ touchcount="";}); //e.preventDefault();
         document.getElementById(a+","+b).addEventListener("mouseup",function(e){ //console.log(e.button)
             //e.preventDefault();
             if(e.button===2 && isStarted){ 
                 if(document.getElementById(this.id).innerText==="🚩") document.getElementById(this.id).innerText="";
                 else document.getElementById(this.id).innerText="🚩";
-            }if(e.button===0) open(this.id && touchcount!="0");
-            touchcount="";
-            return;
+            }if(e.button===0 && touchcount!="0") open(this.id);
         });
         document.getElementById(a+","+b).addEventListener("touchstart",function(e){ //e.preventDefault();  console.log("start"+e);
             touchcount=e.target.id; //console.log(e);
