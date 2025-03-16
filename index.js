@@ -206,7 +206,7 @@ function createGrid(h,w){
  document.querySelector("div.set").innerHTML=innterhtml;
  for(var a=0;a<h;a++){
     for(var b=0;b<w;b++){
-        document.getElementById(a+","+b).addEventListener("click",function(e){e.preventDefault(); open(this.id);});
+        document.getElementById(a+","+b).addEventListener("click",function(e){ open(this.id);}); //e.preventDefault();
         document.getElementById(a+","+b).addEventListener("mouseup",function(e){ //console.log(e.button)
             e.preventDefault();
             if(e.button===2 && isStarted){ 
@@ -215,13 +215,13 @@ function createGrid(h,w){
             }//if(e.button===0) open(this.id);
             return;
         });
-        document.getElementById(a+","+b).addEventListener("touchstart",function(e){ e.preventDefault();  console.log("start"+e);
+        document.getElementById(a+","+b).addEventListener("touchstart",function(e){ //e.preventDefault();  console.log("start"+e);
             touchcount=e.target.id; //console.log(e);
         });
         document.getElementById(a+","+b).addEventListener("touchmove",function(e){
             touchcount="";
         });
-        document.getElementById(a+","+b).addEventListener("touchend",function(e){e.preventDefault(); console.log("end"+e.touches.length);
+        document.getElementById(a+","+b).addEventListener("touchend",function(e){//e.preventDefault(); console.log("end"+e.touches.length);
             if(isStarted && !scanactive && e.touches.length>0){
                 if(!document.getElementById(this.id).disabled) 
                     if(touchcount===e.target.id){
