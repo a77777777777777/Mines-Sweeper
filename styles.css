@@ -53,7 +53,7 @@ footer {
     transition: 0.3s;
     font-size: 1rem;
     height: 30px;
-    width: 100px;
+    width: 70px;
     color: white;
  }
  .btnclass:hover {
@@ -74,7 +74,7 @@ footer {
   color:rgb(255, 255, 255);
   background-color: #0320b0;
   border-radius: 5px;
-  width:130px;
+  width:110px;
 }
 .menuitems:hover{
   color: rgba(32, 32, 32, 0.892);
