@@ -13,7 +13,7 @@ height=10;
 width=10;
 var isStarted=false,scanactive;
 var touchcount,scancount,level="easy";
-
+var DragonGodWakecount=2,isDragonGodAwake=false;
 const audio=new Audio("sounds/wrong.mp3");
 
 window.onload=()=>{
@@ -56,6 +56,24 @@ window.addEventListener("resize",()=>{
     resetgridboxsize();
 });
 
+function AwakeDragonGod(){ if(!isStarted)return;
+    DragonGodWakecount--;
+    if(DragonGodWakecount===0){ isDragonGodAwake=!isDragonGodAwake;
+        if(document.getElementById("DragonGod").innerText==="🐲") document.getElementById("DragonGod").innerText="🐉"; else document.getElementById("DragonGod").innerText="🐲";
+        if(isDragonGodAwake){
+            for(var a=0;a<height;a++){
+                for(var b=0;b<width;b++)
+                    if(!document.getElementById(a+","+b).disabled)document.getElementById(a+","+b).innerText=minescountgrid[a][b];
+            }
+        }else{
+            for(var a=0;a<height;a++){
+                for(var b=0;b<width;b++)
+                    if(!document.getElementById(a+","+b).disabled)document.getElementById(a+","+b).innerText="";
+            }
+        }
+        DragonGodWakecount=2;
+    }
+}
 
 function resetgridboxsize(){
     if(window.innerHeight>window.innerWidth){ //window.innerHeight>window.innerWidth screen.height>screen.width
@@ -160,6 +178,7 @@ function createGrid(h,w){ console.log(mines)
     var boxsize; scanactive=false;
     document.getElementById("time").innerText="00:00";
     document.getElementById("reset").innerText="Pause";
+    document.getElementById("DragonGod").innerText="🐲";isDragonGodAwake=false;
     if(h>w){
         boxsize=Math.floor(size/h)-2;
     }else boxsize=Math.floor(size/w)-2;
@@ -279,7 +298,7 @@ function open(id){
         //for(var a=0;a<height;a++){
         //    for(var b=0;b<width;b++)
         //        document.getElementById(a+","+b).innerText=minescountgrid[a][b];
-        //}
+       // }
     }
    openBox((tmpid.slice(0,tmpid.indexOf(","))*1),(tmpid.slice(tmpid.indexOf(",")+1,tmpid.length)*1));
 }
@@ -291,7 +310,7 @@ function openBox(h1,w1){
             document.getElementById("scan"+scancount).classList.remove("animatebtn");
 
             if(minescountgrid[h1][w1]===9) document.getElementById(h1+","+w1).innerText="💥";
-            else if(minescountgrid[h1][w1]>0){document.getElementById(h1+","+w1).innerText=minescountgrid[h1][w1]; minesoppenedgrid[h1][w1]=2;}
+            else if(minescountgrid[h1][w1]>0){document.getElementById(h1+","+w1).innerText=minescountgrid[h1][w1]; minesoppenedgrid[h1][w1]=2;countmines();}
             document.getElementById(h1+","+w1).classList.remove(currenttheme);
             document.getElementById(h1+","+w1).style.setProperty("background-color","#283149");
             document.getElementById(h1+","+w1).disabled=true;
@@ -403,7 +422,9 @@ function openBox(h1,w1){
             }
         }
       }
-    }
+    } countmines();
+}
+function countmines(){
     var minesoppened=0;
     for(var h=0;h<height;h++){
         for(var w=0;w<width;w++){
@@ -426,7 +447,6 @@ function openBox(h1,w1){
         clearInterval(timerid);
     }
 }
-
 function setStyle(tmpid){
     document.getElementById(tmpid).classList.remove(currenttheme);
     document.getElementById(tmpid).style.setProperty("background-color","#283149");
