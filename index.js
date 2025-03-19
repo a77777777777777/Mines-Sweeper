@@ -144,19 +144,20 @@ function creategame(){
     isStarted=false;
     createGrid(height,width);
 }
-function validatenumber(element){
-    if(!(document.getElementById(element).value*1)>=1) document.getElementById(element).value=1;
-    document.getElementById("newmines").value=Math.floor(document.getElementById("newheight").value*document.getElementById("newwidth").value*0.2);
-
+function validatenumber(element){ if(!(document.getElementById(element).value*1)>=1) document.getElementById(element).value=1; document.getElementById("newmines").value=Math.floor(document.getElementById(element).value*document.getElementById(element).value*0.2); }
+function validate(element){ 
+    if(!(document.getElementById(element).value*1>=(document.getElementById("newheight").value*document.getElementById("newwidth").value*7/100)))document.getElementById(element).value=Math.round(document.getElementById("newheight").value*document.getElementById("newwidth").value*7/100);
+    if((document.getElementById(element).value*1>=(document.getElementById("newheight").value*document.getElementById("newwidth").value*70/100)))document.getElementById(element).value=Math.round(document.getElementById("newheight").value*document.getElementById("newwidth").value*70/100);
 }
 function swapheightwidth(){
     var a=document.getElementById("newheight").value;
     document.getElementById("newheight").value=document.getElementById("newwidth").value;
     document.getElementById("newwidth").value=a;
 }
-function createGrid(h,w){
+function toggletime(id){ if(document.getElementById(id).checked)document.getElementById("time").style.display="none";else document.getElementById("time").style.display=""; }
+function forcereset(){if(!isStarted && !document.getElementById("footer").innerText==="Game Over!")return; isStarted=false;  if(document.getElementById("reset").innerText==="Resume") {document.getElementById("pausewindow").style.display="none"; document.getElementById("restart").blur();document.getElementById("reset").innerText="Pause"; } createGrid(height,width); }
+function createGrid(h,w){ console.log(mines)
     var boxsize; scanactive=false;
-    document.getElementById("footer").innerText="Total Mines: "+mines;
     document.getElementById("time").innerText="00:00";
     document.getElementById("reset").innerText="Pause";
     if(h>w){
@@ -164,6 +165,7 @@ function createGrid(h,w){
     }else boxsize=Math.floor(size/w)-2;
     if(boxsize>50) boxsize=50; if(boxsize<25) boxsize=25;
     if(mines>(height*width))mines=Math.floor((height*width)/4); if(mines===0)mines=Math.floor((height*width)/4);
+    document.getElementById("footer").innerText="Total Mines: "+mines;
     scancount=0;
     document.getElementById("scan1").style.filter="invert(25%)";
     document.getElementById("scan2").style.filter="invert(25%)";

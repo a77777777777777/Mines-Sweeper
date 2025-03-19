@@ -157,7 +157,7 @@
               <div><p class="margintb" style="color:white;">Column:</p><input id="newwidth" onchange="validatenumber('newwidth')" class="controls" type="number" value="25" style="width: 70px;"></div>
               <div><p class="margintb" style="color:white;">&nbsp;</p><button class="controls marginlr" onclick="swapheightwidth()">⇆</button></div>
               <div><p class="margintb" style="color:white;">Row:</p><input id="newheight" onchange="validatenumber('newheight')" class="controls" type="number" value="25" style="width: 70px;"></div>
-              <div><p class="margintb" style="color:white;">Mines:</p><input id="newmines" onchange="validatenumber('newmines')" class="controls" type="number" value="125" style="width: 70px;"></div>
+              <div><p class="margintb" style="color:white;">Mines:</p><input id="newmines" onchange="validate('newmines')" class="controls" type="number" value="125" style="width: 70px;"></div>
             </div>
               <div class="flexstyle">
                 <button class="controls" style="width: 80px;margin:17px;" onclick="creategame()">Ok</button>
@@ -183,6 +183,8 @@
   </div>
 
   <div><button id="reset" class="btnclass" onclick="reset()">Reset</button></div>
+  <div><button id="restart" class="btnclass" onclick="forcereset()">Restart</button></div>
+  <div><input id="showtime" onchange="toggletime('showtime')" type="checkbox" title="Show/Hide Time"></div> <!-- <label for="showtime">Show Time</label> -->
   <div id="time" style="padding-left:8px;padding-right:8px;border:3.2px solid rgb(218, 216, 216); background-color: rgb(2, 2, 86);color:rgb(157, 211, 255)">00:00</div>
   <div style="height:40px;border-radius:10px;display: flex;gap: 8px;align-items: center; justify-content: center; border:1px dashed rgb(0, 170, 255); padding-left: 7px;padding-right: 7px;">
     <div class="themebtn theme1" onclick="changecolor('blue')"></div>
